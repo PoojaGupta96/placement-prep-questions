@@ -1,0 +1,50 @@
+A restaurant is organizing its kitchen. Each counter can either hold a plate (represented by an integer value) or be empty (represented by 0). Write a function to move all empty counters to the end of the array while maintaining the order of the plates, and also return the count of empty counters and return the count of counters with plate.
+
+Sample Input :
+
+plates = [1,0,0,2,3,0,4,5]
+
+
+
+//Code
+
+import java.util.Arrays;
+
+public class RestaurantKitchen {
+    public static void main(String[] args) {
+        // Sample input
+        int[] plates = {1, 0, 0, 2, 3, 0, 4, 5};
+        
+        
+        moveEmptyCountersToEnd(plates);
+    }
+    
+    public static void moveEmptyCountersToEnd(int[] plates) {
+        int plateCount = 0; // Counting of non-zero (plate) elements
+        int emptyCount = 0; // Counting of zeros (empty counters)
+        
+        // Create a new array to hold the result
+        int[] result = new int[plates.length];
+        int index = 0; // Index for placing non-zero values
+        
+        // Step 1: Moving all plates (non-zero values) to the beginning of the result array
+        for (int i = 0; i < plates.length; i++) {
+            if (plates[i] != 0) {
+                result[index++] = plates[i];
+                plateCount++; // Count the plates
+            } else {
+                emptyCount++; // Count the empty counters
+            }
+        }
+        
+        // Step 2: Fill the remaining spaces in the array with zeros
+        while (index < plates.length) {
+            result[index++] = 0;
+        }
+        
+        // Output 
+        System.out.println("Resulting array: " + Arrays.toString(result));
+        System.out.println("Empty counters: " + emptyCount);
+        System.out.println("Counters with plates: " + plateCount);
+    }
+}
